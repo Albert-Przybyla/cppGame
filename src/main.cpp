@@ -45,6 +45,7 @@ void collisionEnemy(Enemy &Enemy, FireBall &fireBall)
     else if (!fireBall.getAuthor())
     {
         fireBall.isShooted(true);
+        Enemy.destroy();
         Enemy.EnemyLossLife();
     }
 }
@@ -78,7 +79,7 @@ int main()
                 window.close();
         }
         window.clear();
-        if (pauseGame && PlayerOne.getPlayerHp() > 0)
+        if (!pauseGame && PlayerOne.getPlayerHp() > 0)
         {
             fireBall.update(PlayerOne.getPosition());
             bomb.update();
@@ -94,22 +95,24 @@ int main()
                 window.draw(fireBalls[i]);
             }
 
-            // window.draw(enemy1);
+            auto iterator = remove_if(begin(enemys), end(enemys), [](Enemy &enemy)
+                                      { return enemy.isDestroyed(); });
+            enemys.erase(iterator, end(enemys));
             window.draw(bomb);
-            // window.draw(enemy2);
-            // window.draw(FireBallEnemy);
-            // window.draw(FireBallEnemy2);
             window.draw(PlayerOne);
             window.draw(fireBall);
+            if (Keyboard::isKeyPressed(Keyboard::Key::Escape))
+            {
+                pauseGame = true;
+            }
         }
         else
         {
             window.draw(PauseScreen);
         }
-
-        if (Keyboard::isKeyPressed(Keyboard::Key::Escape))
+        if (Keyboard::isKeyPressed(Keyboard::Key::Enter))
         {
-            pauseGame = !pauseGame;
+            pauseGame = false;
         }
 
         window.display();

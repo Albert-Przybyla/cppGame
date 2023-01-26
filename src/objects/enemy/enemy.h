@@ -19,8 +19,9 @@ public:
     float left();
     float right();
 
-    bool destroy();
+    void destroy();
     void EnemyLossLife();
+    bool isDestroyed();
 
 private:
     RectangleShape shape;

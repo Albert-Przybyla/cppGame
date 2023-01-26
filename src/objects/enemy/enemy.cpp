@@ -50,7 +50,18 @@ void Enemy::EnemyLossLife()
         this->enemyHP--;
 
     if (enemyHP == 0)
-        shape.setFillColor(Color::Black);
+        this->destroy();
+    // shape.setFillColor(Color::Black);
+}
+
+void Enemy::destroy()
+{
+    destoyed = true;
+}
+
+bool Enemy::isDestroyed()
+{
+    return destoyed;
 }
 
 void Enemy::update()
