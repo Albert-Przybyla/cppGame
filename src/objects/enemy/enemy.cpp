@@ -3,7 +3,7 @@
 
 Enemy::Enemy(float t_X, float t_Y, int EnemyLevel)
 {
-    shape.setPosition(t_Y, 0);
+    shape.setPosition(t_X, 0);
     this->enemyStartPosition = Vector2f(t_X, t_Y);
     shape.setFillColor(Color::Red);
     switch (EnemyLevel)

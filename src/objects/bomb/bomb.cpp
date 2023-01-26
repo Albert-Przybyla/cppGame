@@ -21,13 +21,13 @@ void Bomb::update()
         // code to destroy object
         // this->~Bomb();
     }
-    if (this->bottom() > 990 || this->top() < 0)
+    if (this->bottom() > 1600 || this->top() < 0)
     {
         this->velocity.y = 0 - this->velocity.y;
         this->hp--;
     }
 
-    if (this->right() > 1200 || this->left() < 0)
+    if (this->right() > 2400 || this->left() < 0)
     {
         this->velocity.x = 0 - this->velocity.x;
         this->hp--;

@@ -28,7 +28,7 @@ void Player::update()
     {
         this->velocity.x = 0 - this->playerSpeed;
     }
-    else if (Keyboard::isKeyPressed(Keyboard::Key::Right) && this->right() < 1200)
+    else if (Keyboard::isKeyPressed(Keyboard::Key::Right) && this->right() < 2400)
     {
         this->velocity.x = this->playerSpeed;
     }
@@ -36,7 +36,7 @@ void Player::update()
     {
         this->velocity.y = 0 - this->playerSpeed;
     }
-    else if (Keyboard::isKeyPressed(Keyboard::Key::Down) && this->bottom() < 990)
+    else if (Keyboard::isKeyPressed(Keyboard::Key::Down) && this->bottom() < 1600)
     {
         this->velocity.y = this->playerSpeed;
     }

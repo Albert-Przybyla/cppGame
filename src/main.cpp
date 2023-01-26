@@ -49,14 +49,30 @@ void collisionEnemy(Enemy &Enemy, FireBall &fireBall)
 
 int main()
 {
-    FireBall FireBallEnemy(0.3, true);
-    FireBall FireBallEnemy2(0.3, true);
-    Enemy enemy1(100, 100, 0);
-    Enemy enemy2(800, 100, 1);
+    unsigned inX{6}, inY{1}, level1{100}, level2{100};
+    vector<Enemy> enemys;
+    vector<FireBall> fireBalls;
+    for (int i = 0; i < inY; i++)
+    {
+        for (int j = 0; j < inX; j++)
+        {
+            enemys.emplace_back(100 + j * 250, 100, 0);
+            fireBalls.emplace_back(0.2, true);
+        }
+    }
+
+    Bomb bomb(10, 10, 0.1, 0.1);
+    // FireBall FireBallEnemy(0.3, true);
+    // FireBall FireBallEnemy2(0.3, true);
+    // Enemy enemy1(100, 100, 0);
+    // Enemy enemy2(2050, 100, 0);
+    // Enemy enemy3(2050, 100, 0);
+    // Enemy enemy4(2050, 100, 0);
+    // Enemy enemy5(2050, 100, 0);
     Player PlayerOne(600, 940);
     PauseScreen PauseScreen(false);
     FireBall fireBall(-0.3, false);
-    RenderWindow window(VideoMode(1200, 990), "Space Shooter");
+    RenderWindow window(VideoMode(2400, 1600), "Space Shooter");
 
     while (window.isOpen())
     {
@@ -73,21 +89,33 @@ int main()
             {
             }
             fireBall.update(PlayerOne.getPosition());
-            FireBallEnemy.update(enemy1.getPosition());
-            FireBallEnemy2.update(enemy2.getPosition());
-            enemy1.update();
-            enemy2.update();
+            // FireBallEnemy.update(enemy1.getPosition());
+            // FireBallEnemy2.update(enemy2.getPosition());
+            bomb.update();
+            // enemy1.update();
+            // enemy2.update();
             PlayerOne.update();
 
-            collisionTest(PlayerOne, FireBallEnemy);
-            collisionTest(PlayerOne, FireBallEnemy2);
-            collisionEnemy(enemy1, fireBall);
-            collisionEnemy(enemy2, fireBall);
+            // collisionTest(PlayerOne, FireBallEnemy);
+            // collisionTest(PlayerOne, FireBallEnemy2);
+            // collisionEnemy(enemy1, fireBall);
+            // collisionEnemy(enemy2, fireBall);
 
-            window.draw(enemy1);
-            window.draw(enemy2);
-            window.draw(FireBallEnemy);
-            window.draw(FireBallEnemy2);
+            for (int i = 0; i < inX * inY; i++)
+            {
+                enemys[i].update();
+                window.draw(enemys[i]);
+                fireBalls[i].update(enemys[i].getPosition());
+                collisionTest(PlayerOne, fireBalls[i]);
+                collisionEnemy(enemys[i], fireBall);
+                window.draw(fireBalls[i]);
+            }
+
+            // window.draw(enemy1);
+            window.draw(bomb);
+            // window.draw(enemy2);
+            // window.draw(FireBallEnemy);
+            // window.draw(FireBallEnemy2);
             window.draw(PlayerOne);
             window.draw(fireBall);
         }

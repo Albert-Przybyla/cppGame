@@ -21,12 +21,12 @@ Vector2f FireBall::getPosition()
 
 void FireBall::update(Vector2f startPosition)
 {
-    if (this->bottom() > 990 || this->top() < 0)
+    if (this->bottom() > 1600 || this->top() < 0)
     {
         shape.setPosition(startPosition);
     }
 
-    if (this->right() > 1200 || this->left() < 0)
+    if (this->right() > 2400 || this->left() < 0)
     {
         this->velocity.x = 0 - this->velocity.x;
     }
