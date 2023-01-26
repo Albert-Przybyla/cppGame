@@ -1,18 +1,22 @@
 #include "fireBall.h"
 
-FireBall::FireBall(float t_X, float t_Y, float radius, float speedX, float speedY)
+FireBall::FireBall(float t_X, float t_Y, float speedY)
 {
-    this->fireBallRadius = radius;
-    this->velocity = Vector2f(speedX, speedY);
+    this->velocity = Vector2f(0, speedY);
     shape.setPosition(t_X, t_Y);
-    shape.setRadius(radius);
+    shape.setRadius(this->fireBallRadius);
     shape.setFillColor(Color::White);
-    shape.setOrigin(radius, radius);
+    shape.setOrigin(this->fireBallRadius, this->fireBallRadius);
 }
 
 void FireBall::draw(RenderTarget &target, RenderStates state) const
 {
     target.draw(this->shape, state);
+}
+
+Vector2f FireBall::getPosition()
+{
+    return shape.getPosition();
 }
 
 void FireBall::update()

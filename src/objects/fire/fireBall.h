@@ -11,12 +11,16 @@ class FireBall : public Drawable
 {
 private:
     CircleShape shape;
-    float fireBallRadius;
+    float fireBallRadius{3};
     Vector2f velocity;
     void draw(RenderTarget &target, RenderStates state) const;
 
 public:
-    FireBall(float t_X, float t_Y, float radius, float speedX, float speedY);
+    FireBall(float t_X, float t_Y, float speedY);
+    FireBall() = delete;
+    ~FireBall() = default;
+
+    Vector2f getPosition();
 
     void update();
     float top();

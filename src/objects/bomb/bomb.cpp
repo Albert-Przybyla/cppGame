@@ -1,13 +1,12 @@
 #include "bomb.h"
 
-Bomb::Bomb(float t_X, float t_Y, float radius, float speedX, float speedY)
+Bomb::Bomb(float t_X, float t_Y, float speedX, float speedY)
 {
-    this->fireBallRadius = radius;
     this->velocity = Vector2f(speedX, speedY);
     shape.setPosition(t_X, t_Y);
-    shape.setRadius(radius);
+    shape.setRadius(this->BombRadius);
     shape.setFillColor(Color::White);
-    shape.setOrigin(radius, radius);
+    shape.setOrigin(this->BombRadius, this->BombRadius);
 }
 
 void Bomb::draw(RenderTarget &target, RenderStates state) const
@@ -17,6 +16,11 @@ void Bomb::draw(RenderTarget &target, RenderStates state) const
 
 void Bomb::update()
 {
+    if (hp <= 0)
+    {
+        // code to destroy object
+        // this->~Bomb();
+    }
     if (this->bottom() > 990 || this->top() < 0)
     {
         this->velocity.y = 0 - this->velocity.y;
@@ -29,7 +33,7 @@ void Bomb::update()
         this->hp--;
     }
 
-    shape.move(this->velocity);
+    this->shape.move(this->velocity);
 }
 
 float Bomb::top()

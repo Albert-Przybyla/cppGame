@@ -3,16 +3,17 @@
 
 using namespace sf;
 
-class Enemy : public Drawable
+class Player : public Drawable
 {
 public:
-    Enemy(float t_X, float t_Y, int EnemyLevel);
-    Enemy() = delete;
-    ~Enemy() = default;
+    Player(float t_X, float t_Y);
+    Player() = delete;
+    ~Player() = default;
 
     Vector2f getPosition();
 
     void update();
+    void playerLossLife();
 
     float top();
     float bottom();
@@ -21,12 +22,9 @@ public:
 
 private:
     RectangleShape shape;
-    float enemyWidth;
-    float enemyHeight;
-    float enemySpeed;
-    float enemyMovment;
-    int enemyHP;
-    float enemyStartPosition;
+    float playerWidth{40};
+    float playerheight{40};
+    float playerSpeed;
     Vector2f velocity;
     void draw(RenderTarget &target, RenderStates state) const;
 };
