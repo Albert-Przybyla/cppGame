@@ -3,15 +3,16 @@
 #include <SFML/Window.hpp>
 #include <string>
 
+#include "objects/fire/fireBall.cpp"
+
 using namespace sf;
 using namespace std;
 
 int main()
 {
-    RenderWindow window(VideoMode(1200, 1200), "space shutter");
-    window.setFramerateLimit(60);
-    CircleShape shape(100.f);
-    shape.setFillColor(Color::Red);
+
+    FireBall FireBall(600, 20, 20, 0.1, 0.1);
+    RenderWindow window(VideoMode(1200, 990), "Space Shooter");
 
     while (window.isOpen())
     {
@@ -21,9 +22,9 @@ int main()
             if (event.type == Event::Closed)
                 window.close();
         }
-
-        window.clear(Color::Green);
-        window.draw(shape);
+        FireBall.update();
+        window.clear();
+        window.draw(FireBall);
         window.display();
     }
 
