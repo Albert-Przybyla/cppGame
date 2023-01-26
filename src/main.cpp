@@ -9,10 +9,14 @@
 #include "objects/player/player.cpp"
 #include "objects/enemy/enemy.cpp"
 
+#include "pauseScreen/pauseScreen.cpp"
+
 using namespace sf;
 using namespace std;
 
-bool inGame = false;
+bool pauseGame = false;
+
+int score = 0;
 
 template <class T1, class T2>
 bool isIntersecting(T1 &A, T2 &B)
@@ -45,12 +49,13 @@ void collisionEnemy(Enemy &Enemy, FireBall &fireBall)
 
 int main()
 {
-    // FireBall FireBall(600, 20, 0.1);
-    // Bomb bomb1(12, 12, 0.05, 0.05);
-    Enemy Enemy(100, 100, 0);
     FireBall FireBallEnemy(0.3, true);
+    FireBall FireBallEnemy2(0.3, true);
+    Enemy enemy1(100, 100, 0);
+    Enemy enemy2(800, 100, 1);
     Player PlayerOne(600, 940);
-    FireBall FireBall(-0.3, false);
+    PauseScreen PauseScreen(false);
+    FireBall fireBall(-0.3, false);
     RenderWindow window(VideoMode(1200, 990), "Space Shooter");
 
     while (window.isOpen())
@@ -62,44 +67,38 @@ int main()
                 window.close();
         }
         window.clear();
-        if (inGame)
+        if (pauseGame)
         {
-            FireBall.update(PlayerOne.getPosition());
-            FireBallEnemy.update(Enemy.getPosition());
-            Enemy.update();
+            if (score < 2)
+            {
+            }
+            fireBall.update(PlayerOne.getPosition());
+            FireBallEnemy.update(enemy1.getPosition());
+            FireBallEnemy2.update(enemy2.getPosition());
+            enemy1.update();
+            enemy2.update();
             PlayerOne.update();
 
             collisionTest(PlayerOne, FireBallEnemy);
-            collisionEnemy(Enemy, FireBall);
+            collisionTest(PlayerOne, FireBallEnemy2);
+            collisionEnemy(enemy1, fireBall);
+            collisionEnemy(enemy2, fireBall);
 
-            window.draw(Enemy);
+            window.draw(enemy1);
+            window.draw(enemy2);
             window.draw(FireBallEnemy);
+            window.draw(FireBallEnemy2);
             window.draw(PlayerOne);
-            window.draw(FireBall);
+            window.draw(fireBall);
         }
         else
         {
-            sf::Text text;
-
-            // set the string to display
-            text.setString("Hello world");
-
-            // set the character size
-            text.setCharacterSize(24); // in pixels, not points!
-
-            // set the color
-            text.setFillColor(Color::Red);
-
-            // set the text style
-            text.setStyle(Text::Bold | Text::Underlined);
-            // inside the main loop, between window.clear() and window.display()
-            text.setPosition(23, 23);
-            window.draw(text);
+            window.draw(PauseScreen);
         }
 
         if (Keyboard::isKeyPressed(Keyboard::Key::Escape))
         {
-            inGame = !inGame;
+            pauseGame = !pauseGame;
         }
 
         window.display();
