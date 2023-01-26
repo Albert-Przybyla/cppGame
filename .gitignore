@@ -1,6 +1,7 @@
 # Vs code
 
 .vscode
+*.DS_Store
 
 # compiled program
 
