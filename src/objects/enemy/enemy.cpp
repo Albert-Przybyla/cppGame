@@ -3,8 +3,8 @@
 
 Enemy::Enemy(float t_X, float t_Y, int EnemyLevel)
 {
-    shape.setPosition(t_X, t_Y);
-    this->enemyStartPosition = t_X;
+    shape.setPosition(t_Y, 0);
+    this->enemyStartPosition = Vector2f(t_X, t_Y);
     shape.setFillColor(Color::Red);
     switch (EnemyLevel)
     {
@@ -29,7 +29,7 @@ Enemy::Enemy(float t_X, float t_Y, int EnemyLevel)
         this->enemyMovment = 250;
         this->enemyHP = 3;
     };
-    this->velocity = Vector2f(this->enemySpeed, 0);
+    this->velocity = Vector2f(this->enemySpeed, this->enemySpeed);
     shape.setSize({this->enemyWidth, this->enemyHeight});
     shape.setOrigin(this->enemyWidth / 2, this->enemyHeight / 2);
 }
@@ -46,10 +46,15 @@ Vector2f Enemy::getPosition()
 
 void Enemy::update()
 {
-    // if (this->right() > this->enemyStartPosition + this->enemyMovment || this->left() < this->enemyStartPosition)
-    // {
-    //     this->velocity.x = 0 - this->velocity.x;
-    // }
+    if (this->enemyStartPosition.y <= shape.getPosition().y)
+    {
+        this->velocity.y = 0;
+    }
+
+    if (this->right() > this->enemyMovment + this->enemyStartPosition.x - this->shape.getSize().x || this->left() < this->enemyStartPosition.x - this->shape.getSize().x)
+    {
+        this->velocity.x = -this->velocity.x;
+    }
 
     shape.move(this->velocity);
 }

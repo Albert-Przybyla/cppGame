@@ -26,7 +26,7 @@ private:
     float enemySpeed;
     float enemyMovment;
     int enemyHP;
-    float enemyStartPosition;
+    Vector2f enemyStartPosition;
     Vector2f velocity;
     void draw(RenderTarget &target, RenderStates state) const;
 };
