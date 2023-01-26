@@ -1,9 +1,9 @@
 #include "fireBall.h"
 
-FireBall::FireBall(float t_X, float t_Y, float speedY)
+FireBall::FireBall(float speedY, bool isFromEnemy)
 {
     this->velocity = Vector2f(0, speedY);
-    shape.setPosition(t_X, t_Y);
+    this->isFromEnemy = isFromEnemy;
     shape.setRadius(this->fireBallRadius);
     shape.setFillColor(Color::White);
     shape.setOrigin(this->fireBallRadius, this->fireBallRadius);
@@ -19,11 +19,11 @@ Vector2f FireBall::getPosition()
     return shape.getPosition();
 }
 
-void FireBall::update()
+void FireBall::update(Vector2f startPosition)
 {
     if (this->bottom() > 990 || this->top() < 0)
     {
-        this->velocity.y = 0 - this->velocity.y;
+        shape.setPosition(startPosition);
     }
 
     if (this->right() > 1200 || this->left() < 0)
@@ -32,6 +32,11 @@ void FireBall::update()
     }
 
     shape.move(this->velocity);
+}
+
+bool FireBall::getAuthor()
+{
+    return this->isFromEnemy;
 }
 
 float FireBall::top()

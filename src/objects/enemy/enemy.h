@@ -19,6 +19,8 @@ public:
     float left();
     float right();
 
+    void EnemyLossLife();
+
 private:
     RectangleShape shape;
     float enemyWidth;

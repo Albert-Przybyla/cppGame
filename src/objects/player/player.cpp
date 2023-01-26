@@ -23,15 +23,6 @@ Vector2f Player::getPosition()
 
 void Player::update()
 {
-    // if (this->bottom() > 990 || this->top() < 0)
-    // {
-    //     this->velocity.y = 0 - this->velocity.y;
-    // }
-
-    // if (this->right() > 1200 || this->left() < 0)
-    // {
-    //     this->velocity.x = 0 - this->velocity.x;
-    // }
     this->shape.move(this->velocity);
     if (Keyboard::isKeyPressed(Keyboard::Key::Left) && this->left() > 0)
     {

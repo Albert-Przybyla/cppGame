@@ -11,18 +11,20 @@ class FireBall : public Drawable
 {
 private:
     CircleShape shape;
-    float fireBallRadius{3};
+    float fireBallRadius{5};
     Vector2f velocity;
+    bool isFromEnemy;
+    int numberInSeries;
     void draw(RenderTarget &target, RenderStates state) const;
 
 public:
-    FireBall(float t_X, float t_Y, float speedY);
+    FireBall(float speedY, bool isFromEnemy);
     FireBall() = delete;
     ~FireBall() = default;
 
     Vector2f getPosition();
-
-    void update();
+    bool getAuthor();
+    void update(Vector2f startPosition);
     float top();
     float bottom();
     float left();

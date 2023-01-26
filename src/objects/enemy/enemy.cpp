@@ -9,8 +9,8 @@ Enemy::Enemy(float t_X, float t_Y, int EnemyLevel)
     switch (EnemyLevel)
     {
     case 1:
-        this->enemyWidth = 20;
-        this->enemyHeight = 20;
+        this->enemyWidth = 30;
+        this->enemyHeight = 30;
         this->enemySpeed = 0.05;
         this->enemyMovment = 300;
         this->enemyHP = 5;
@@ -23,8 +23,8 @@ Enemy::Enemy(float t_X, float t_Y, int EnemyLevel)
         this->enemyHP = 8;
         break;
     default:
-        this->enemyWidth = 16;
-        this->enemyHeight = 16;
+        this->enemyWidth = 40;
+        this->enemyHeight = 40;
         this->enemySpeed = 0.04;
         this->enemyMovment = 250;
         this->enemyHP = 3;
@@ -42,6 +42,15 @@ void Enemy::draw(RenderTarget &target, RenderStates state) const
 Vector2f Enemy::getPosition()
 {
     return shape.getPosition();
+}
+
+void Enemy::EnemyLossLife()
+{
+    if (enemyHP > 0)
+        this->enemyHP--;
+
+    if (enemyHP == 0)
+        shape.setFillColor(Color::Black);
 }
 
 void Enemy::update()
