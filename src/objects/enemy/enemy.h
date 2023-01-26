@@ -19,6 +19,7 @@ public:
     float left();
     float right();
 
+    bool destroy();
     void EnemyLossLife();
 
 private:
@@ -27,6 +28,7 @@ private:
     float enemyHeight;
     float enemySpeed;
     float enemyMovment;
+    bool destoyed{false};
     int enemyHP;
     Vector2f enemyStartPosition;
     Vector2f velocity;

@@ -1,5 +1,6 @@
 #pragma once
 #include "player.h"
+#include <unistd.h>
 
 Player::Player(float t_X, float t_Y)
 {
@@ -48,7 +49,13 @@ void Player::update()
 
 void Player::playerLossLife()
 {
+    playerHP--;
     shape.setFillColor(Color::Red);
+}
+
+int Player::getPlayerHp()
+{
+    return this->playerHP;
 }
 
 float Player::top()

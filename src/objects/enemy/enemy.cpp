@@ -11,23 +11,23 @@ Enemy::Enemy(float t_X, float t_Y, int EnemyLevel)
     case 1:
         this->enemyWidth = 30;
         this->enemyHeight = 30;
-        this->enemySpeed = 0.05;
+        this->enemySpeed = 0.1;
         this->enemyMovment = 300;
-        this->enemyHP = 5;
+        this->enemyHP = 3;
         break;
     case 2:
-        this->enemyWidth = 25;
-        this->enemyHeight = 25;
-        this->enemySpeed = 0.06;
+        this->enemyWidth = 30;
+        this->enemyHeight = 30;
+        this->enemySpeed = 0.14;
         this->enemyMovment = 400;
-        this->enemyHP = 8;
+        this->enemyHP = 4;
         break;
     default:
         this->enemyWidth = 40;
         this->enemyHeight = 40;
-        this->enemySpeed = 0.04;
+        this->enemySpeed = 0.06;
         this->enemyMovment = 250;
-        this->enemyHP = 3;
+        this->enemyHP = 2;
     };
     this->velocity = Vector2f(this->enemySpeed, this->enemySpeed);
     shape.setSize({this->enemyWidth, this->enemyHeight});

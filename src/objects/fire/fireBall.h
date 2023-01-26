@@ -14,6 +14,7 @@ private:
     float fireBallRadius{5};
     Vector2f velocity;
     bool isFromEnemy;
+    bool shooted{false};
     int numberInSeries;
     void draw(RenderTarget &target, RenderStates state) const;
 
@@ -29,4 +30,5 @@ public:
     float bottom();
     float left();
     float right();
+    void isShooted(bool state);
 };

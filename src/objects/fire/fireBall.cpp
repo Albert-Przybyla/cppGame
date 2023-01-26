@@ -21,9 +21,10 @@ Vector2f FireBall::getPosition()
 
 void FireBall::update(Vector2f startPosition)
 {
-    if (this->bottom() > 1600 || this->top() < 0)
+    if (this->bottom() > 1600 || this->top() < 0 || this->shooted)
     {
         shape.setPosition(startPosition);
+        this->isShooted(false);
     }
 
     if (this->right() > 2400 || this->left() < 0)
@@ -32,6 +33,11 @@ void FireBall::update(Vector2f startPosition)
     }
 
     shape.move(this->velocity);
+}
+
+void FireBall::isShooted(bool state)
+{
+    this->shooted = state;
 }
 
 bool FireBall::getAuthor()

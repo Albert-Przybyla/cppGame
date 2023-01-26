@@ -31,6 +31,7 @@ void collisionTest(Player &Player, FireBall &fireBall)
     }
     else if (fireBall.getAuthor())
     {
+        fireBall.isShooted(true);
         Player.playerLossLife();
     }
 }
@@ -43,6 +44,7 @@ void collisionEnemy(Enemy &Enemy, FireBall &fireBall)
     }
     else if (!fireBall.getAuthor())
     {
+        fireBall.isShooted(true);
         Enemy.EnemyLossLife();
     }
 }
@@ -57,18 +59,11 @@ int main()
         for (int j = 0; j < inX; j++)
         {
             enemys.emplace_back(100 + j * 250, 100, 0);
-            fireBalls.emplace_back(0.2, true);
+            fireBalls.emplace_back(0.4, true);
         }
     }
 
-    Bomb bomb(10, 10, 0.1, 0.1);
-    // FireBall FireBallEnemy(0.3, true);
-    // FireBall FireBallEnemy2(0.3, true);
-    // Enemy enemy1(100, 100, 0);
-    // Enemy enemy2(2050, 100, 0);
-    // Enemy enemy3(2050, 100, 0);
-    // Enemy enemy4(2050, 100, 0);
-    // Enemy enemy5(2050, 100, 0);
+    Bomb bomb(10, 10, 0.2, 0.2);
     Player PlayerOne(600, 940);
     PauseScreen PauseScreen(false);
     FireBall fireBall(-0.3, false);
@@ -83,23 +78,11 @@ int main()
                 window.close();
         }
         window.clear();
-        if (pauseGame)
+        if (pauseGame && PlayerOne.getPlayerHp() > 0)
         {
-            if (score < 2)
-            {
-            }
             fireBall.update(PlayerOne.getPosition());
-            // FireBallEnemy.update(enemy1.getPosition());
-            // FireBallEnemy2.update(enemy2.getPosition());
             bomb.update();
-            // enemy1.update();
-            // enemy2.update();
             PlayerOne.update();
-
-            // collisionTest(PlayerOne, FireBallEnemy);
-            // collisionTest(PlayerOne, FireBallEnemy2);
-            // collisionEnemy(enemy1, fireBall);
-            // collisionEnemy(enemy2, fireBall);
 
             for (int i = 0; i < inX * inY; i++)
             {

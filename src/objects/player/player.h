@@ -19,12 +19,14 @@ public:
     float bottom();
     float left();
     float right();
+    int getPlayerHp();
 
 private:
     RectangleShape shape;
     float playerWidth{40};
     float playerheight{40};
     float playerSpeed;
+    int playerHP{3};
     Vector2f velocity;
     void draw(RenderTarget &target, RenderStates state) const;
 };
