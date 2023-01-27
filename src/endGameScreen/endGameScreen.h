@@ -3,16 +3,17 @@
 
 using namespace sf;
 
-class PauseScreen : public Drawable
+class EndGameScreen : public Drawable
 {
 public:
-    PauseScreen(bool open);
-    PauseScreen() = delete;
-    ~PauseScreen() = default;
+    EndGameScreen(bool open);
+    EndGameScreen() = delete;
+    ~EndGameScreen() = default;
 
 private:
     RectangleShape shape;
-    RectangleShape shape2;
+    CircleShape shape2;
+    CircleShape shape3;
     sf::Text logout;
 
     void draw(RenderTarget &target, RenderStates state) const;

@@ -18,8 +18,8 @@ Enemy::Enemy(float t_X, float t_Y, int EnemyLevel)
     case 2:
         this->enemyWidth = 30;
         this->enemyHeight = 30;
-        this->enemySpeed = 0.14;
-        this->enemyMovment = 400;
+        this->enemySpeed = -0.14;
+        this->enemyMovment = -400;
         this->enemyHP = 4;
         break;
     default:
@@ -51,7 +51,6 @@ void Enemy::EnemyLossLife()
 
     if (enemyHP == 0)
         this->destroy();
-    // shape.setFillColor(Color::Black);
 }
 
 void Enemy::destroy()

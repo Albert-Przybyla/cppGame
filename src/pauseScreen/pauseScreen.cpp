@@ -3,21 +3,15 @@
 
 PauseScreen::PauseScreen(bool open)
 {
-    shape.setPosition(620, 450);
+    shape.setPosition(1180, 800);
     shape.setSize({20, 80});
     shape.setFillColor(Color::White);
-    shape.setOrigin(10, 60);
+    shape.setOrigin(10, 40);
 
-    shape2.setPosition(580, 450);
+    shape2.setPosition(1220, 800);
     shape2.setSize({20, 80});
     shape2.setFillColor(Color::White);
-    shape2.setOrigin(10, 60);
-
-    logout.setString("Hello world");
-    logout.setPosition(620, 550);
-    logout.setCharacterSize(24);
-    logout.setFillColor(Color::White);
-    logout.setStyle(Text::Bold | Text::Underlined);
+    shape2.setOrigin(10, 40);
 }
 
 void PauseScreen::draw(RenderTarget &target, RenderStates state) const

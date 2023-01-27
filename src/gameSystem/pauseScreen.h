@@ -12,8 +12,8 @@ public:
 
 private:
     RectangleShape shape;
-    RectangleShape shape2;
-    sf::Text logout;
+    CircleShape shape2;
+    CircleShape shape3;
 
     void draw(RenderTarget &target, RenderStates state) const;
 };
