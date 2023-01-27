@@ -12,12 +12,14 @@
 
 #include "pauseScreen/pauseScreen.cpp"
 #include "endGameScreen/endGameScreen.cpp"
+#include "helloScreen/helloScreen.cpp"
 // #include "gameSystem/gamePlay.cpp"
 
 using namespace sf;
 using namespace std;
 
 bool pauseGame = false;
+bool gameStarted = false;
 
 template <class T1, class T2>
 bool isIntersecting(T1 &A, T2 &B)
@@ -70,6 +72,7 @@ int main()
     Player PlayerOne(600, 940);
     PauseScreen PauseScreen(false);
     EndGameScreen endGameScreen(false);
+    HelloScreen helloScreen(false);
     FireBall fireBall(-0.3, false);
     RenderWindow window(VideoMode(2400, 1600), "Space Shooter");
 
@@ -82,7 +85,15 @@ int main()
                 window.close();
         }
         window.clear();
-        if (!pauseGame && PlayerOne.getPlayerHp() > 0)
+        if (!gameStarted)
+        {
+            window.draw(helloScreen);
+            if (Keyboard::isKeyPressed(Keyboard::Key::Enter))
+            {
+                gameStarted = true;
+            }
+        }
+        if (!pauseGame && PlayerOne.getPlayerHp() > 0 && gameStarted)
         {
             fireBall.update(PlayerOne.getPosition());
             bomb.update();
@@ -113,11 +124,11 @@ int main()
                 pauseGame = true;
             }
         }
-        else if (pauseGame && PlayerOne.getPlayerHp() > 0)
+        else if (pauseGame && PlayerOne.getPlayerHp() > 0 && gameStarted)
         {
             window.draw(PauseScreen);
         }
-        else
+        else if (gameStarted)
         {
             window.draw(endGameScreen);
             if (Keyboard::isKeyPressed(Keyboard::Key::Escape))
