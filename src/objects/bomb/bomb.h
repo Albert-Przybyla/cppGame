@@ -13,6 +13,7 @@ private:
     CircleShape shape;
     float BombRadius{10};
     Vector2f velocity;
+    bool shooted{false};
     int hp{10};
     void draw(RenderTarget &target, RenderStates state) const;
 
@@ -25,4 +26,5 @@ public:
     float bottom();
     float left();
     float right();
+    void isShooted(bool state);
 };

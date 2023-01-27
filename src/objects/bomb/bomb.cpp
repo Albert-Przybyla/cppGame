@@ -16,24 +16,27 @@ void Bomb::draw(RenderTarget &target, RenderStates state) const
 
 void Bomb::update()
 {
-    if (hp <= 0)
+    if (this->shooted)
     {
-        // code to destroy object
-        // this->~Bomb();
+        shape.setPosition(1200, 140);
+        this->isShooted(false);
     }
     if (this->bottom() > 1600 || this->top() < 0)
     {
         this->velocity.y = 0 - this->velocity.y;
-        this->hp--;
     }
 
     if (this->right() > 2400 || this->left() < 0)
     {
         this->velocity.x = 0 - this->velocity.x;
-        this->hp--;
     }
 
     this->shape.move(this->velocity);
+}
+
+void Bomb::isShooted(bool state)
+{
+    this->shooted = state;
 }
 
 float Bomb::top()

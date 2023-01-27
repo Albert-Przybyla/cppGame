@@ -39,6 +39,16 @@ void collisionTest(Player &Player, FireBall &fireBall)
     }
 }
 
+void collisionTestBomb(Player &Player, Bomb &bomb)
+{
+    if (!isIntersecting(Player, bomb))
+    {
+        return;
+    }
+    bomb.isShooted(true);
+    Player.playerLossLife();
+}
+
 void collisionEnemy(Enemy &Enemy, FireBall &fireBall)
 {
     if (!isIntersecting(Enemy, fireBall))
@@ -67,7 +77,8 @@ int main()
         }
     }
 
-    Bomb bomb(10, 10, 0.2, 0.2);
+    Bomb bomb(1400, 160, 0.2, 0.2);
+    Bomb bomb2(1000, 160, -0.2, 0.2);
     Lifes lifeTab[3] = {Lifes(2360, 40), Lifes(2310, 40), Lifes(2260, 40)};
     Player PlayerOne(600, 940);
     PauseScreen PauseScreen(false);
@@ -97,6 +108,8 @@ int main()
         {
             fireBall.update(PlayerOne.getPosition());
             bomb.update();
+            bomb2.update();
+            collisionTestBomb(PlayerOne, bomb);
             PlayerOne.update();
 
             for (int i = 0; i < inX * inY; i++)
@@ -113,6 +126,7 @@ int main()
                                       { return enemy.isDestroyed(); });
             enemys.erase(iterator, end(enemys));
             window.draw(bomb);
+            window.draw(bomb2);
             for (int i = 0; i < PlayerOne.getPlayerHp(); i++)
             {
                 window.draw(lifeTab[i]);
