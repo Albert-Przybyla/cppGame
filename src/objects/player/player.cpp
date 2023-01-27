@@ -50,7 +50,6 @@ void Player::update()
 void Player::playerLossLife()
 {
     playerHP--;
-    shape.setFillColor(Color::Red);
 }
 
 int Player::getPlayerHp()

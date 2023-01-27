@@ -13,13 +13,14 @@
 #include "pauseScreen/pauseScreen.cpp"
 #include "endGameScreen/endGameScreen.cpp"
 #include "helloScreen/helloScreen.cpp"
-// #include "gameSystem/gamePlay.cpp"
+#include "gameSystem/gamePlay.cpp"
 
 using namespace sf;
 using namespace std;
 
 bool pauseGame = false;
 bool gameStarted = false;
+int score;
 
 template <class T1, class T2>
 bool isIntersecting(T1 &A, T2 &B)
@@ -60,12 +61,13 @@ void collisionEnemy(Enemy &Enemy, FireBall &fireBall)
         fireBall.isShooted(true);
         Enemy.destroy();
         Enemy.EnemyLossLife();
+        score++;
     }
 }
 
 int main()
 {
-    unsigned inX{6}, inY{2}, level1{100}, level2{100};
+    unsigned inX{7}, inY{2}, level1{100}, level2{100};
     vector<Enemy> enemys;
     vector<FireBall> fireBalls;
     for (int i = 0; i < inY; i++)
@@ -76,7 +78,7 @@ int main()
             fireBalls.emplace_back(0.4, true);
         }
     }
-
+    Game game;
     Bomb bomb(1400, 160, 0.2, 0.2);
     Bomb bomb2(1000, 160, -0.2, 0.2);
     Lifes lifeTab[3] = {Lifes(2360, 40), Lifes(2310, 40), Lifes(2260, 40)};
@@ -145,6 +147,12 @@ int main()
         else if (gameStarted)
         {
             window.draw(endGameScreen);
+            int lastScore = game.getScore();
+            if (lastScore < score)
+            {
+                game.setScore(score);
+            }
+            cout << score;
             if (Keyboard::isKeyPressed(Keyboard::Key::Escape))
             {
                 return 0;

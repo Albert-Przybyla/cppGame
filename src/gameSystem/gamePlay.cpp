@@ -3,11 +3,6 @@
 #include <fstream>
 #include <string>
 
-#include "../objects/fire/fireBall.cpp"
-#include "../objects/bomb/bomb.cpp"
-#include "../objects/player/player.cpp"
-#include "../objects/enemy/enemy.cpp"
-
 /*
     Class with game engine
 */

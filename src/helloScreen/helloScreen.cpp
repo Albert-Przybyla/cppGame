@@ -65,7 +65,7 @@ HelloScreen::HelloScreen(bool open)
 
     shapeO2.setRadius(26);
     shapeO2.setFillColor(Color::Black);
-    shapeO2.setOrigin(5, 5);
+    shapeO2.setOrigin(5, 6);
     shapeO2.setPosition(1310, 777);
 }
 
